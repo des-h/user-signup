@@ -8,11 +8,48 @@ form="""
    <head>
     <style>
     .error {color: red;}
-    </style>   
-
-
-
-
+    </style> 
+    </head>
+    <body>
+     <h1>Signup</h1>
+     <form method="post">
+      <table>
+       <tbody>
+        <tr>
+         <td>
+          <label for="username">Username</label>  
+         </td>
+         <td>
+          <input name="usenname" type="text" value="">
+          <span class="error"></span>
+         </td>
+         </tr>
+         <td>
+           <input name="password" type="password">
+           <span class="error"></span>
+        </td>
+        </tr>
+        <tr>
+        <td>
+         <label for="verify" type="password">
+         <span class="error"></span>
+         </td>
+         </tr>
+         <tr>
+          <td>
+          <label for="email">Email(optional)</label>
+          </td>
+          <td>
+            <input name="email" value="">
+            <span class="error"></span>
+           </td>
+           </tr>
+           </tbody>
+           </table>
+           <input type="submit">
+           </form>
+           </body>
+           </html>"""
 
 
 @app.route("/")
