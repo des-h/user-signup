@@ -20,20 +20,26 @@ form="""
           <label for="username">Username</label>  
          </td>
          <td>
-          <input name="usenname" type="text" value="">
+          <input name="username" type="text" value="">
           <span class="error"></span>
          </td>
          </tr>
          <td>
+          <label for="password">Password</label>
+          </td>
+          <td>
            <input name="password" type="password">
            <span class="error"></span>
         </td>
         </tr>
         <tr>
         <td>
-         <label for="verify" type="password">
-         <span class="error"></span>
+         <label for="verify" type="password">Verify Password</label>
          </td>
+         <td>
+         <input name="verify" type="password">
+        <span class="error"></span>
+        </td>
          </tr>
          <tr>
           <td>
