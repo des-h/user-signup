@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, render_template
-app = Flask(__name__)
-app.config['DEBUG'] = True
+import cgi
+import os
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -187,10 +187,8 @@ def user_signup_complete():
 @app.route('/welcome')
 def valid_signup():
     username = request.args.get('username')
-    #username = request.form['username']
-    #return '<h1>Welcome, ' + username + '!</h1>'
     #template = jinja_env.get_template('welcome.html')
-    #return "Welcome, " + username + "!"
+    
     return render_template('welcome.html', username=username) #template.render(username=username)
 
 app.run()
