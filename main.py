@@ -68,7 +68,7 @@ def user_signup_complete():
 
     username_error = ""
     password_error = ""
-    verify__error = ""
+    verify_error = ""
     email_error = ""
 
     # THIS IS THE PASSWORD VALIDATION
