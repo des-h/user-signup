@@ -4,9 +4,7 @@ app.config['DEBUG'] = True
 
 # THIS CREATES ROUTE TO DISPLAY THE FORM
 
-@app.route('/signup')
-def index():
-    return render_template('index.html')
+
 
 # THESE ARE FUNCTIONS FOR THE VALIDATIONS
 
@@ -53,6 +51,10 @@ def email_period_more_than_one(x):
         return False
 
 # THIS CREATES ROUTE TO PROCESS AND VALIDATE THE FORM
+
+@app.route('/signup')
+def index():
+    return render_template('index.html')
 
 @app.route('/signup', methods=['POST'])
 def user_signup_complete():
@@ -172,7 +174,7 @@ def user_signup_complete():
     # THIS IS THE FINAL RESULT
 
     if not username_error and not password_error and not verify_error and not email_error:
-        username = username
+        #username = username
         #return username
         return redirect('/welcome?username={0}'.format(username))
         #return redirect('/welcome?username={username}')
