@@ -54,21 +54,21 @@ def email_period_more_than_one(x):
 
 # THIS CREATES ROUTE TO PROCESS AND VALIDATE THE FORM
 
-@app.route("/signup", methods=['POST'])
+@app.route('/signup', methods=['POST'])
 def user_signup_complete():
 
     # THIS CREATES VARIABLES FROM THE FORM INPUTS
 
     username = request.form['username']
     password = request.form['password']
-    password_validate = request.form['password_validate']
+    verify = request.form['verify']#password_validate=['password_validate']
     email = request.form['email']
 
     # THIS CREATES EMPTY STRINGS FOR THE ERROR MESSAGES
 
     username_error = ""
     password_error = ""
-    password_validate_error = ""
+    verify__error = ""
     email_error = ""
 
     # THIS IS THE PASSWORD VALIDATION
@@ -76,109 +76,109 @@ def user_signup_complete():
     if not empty_val(password):
         password_error = "Password cannot be blank"
         password = ''
-        password_validate = ''
+        verify = '' #password_validate = ''
     elif len(password) < 3 or len(password) > 20:
-        password_error = "Password must be between 3 and 20 characters"
+        verify_error = "Password must be between 3 and 20 characters"
         password = ''
-        password_validate = ''
+        verify = '' #password_validate = ''
     else:
         if " " in password:
-            password_error = "Password must not contain spaces"
+            verify_error = "Password must not contain spaces"
             password = ''
-            password_validate = ''
+            verify = '' #password_validate = ''
 
     # THIS IS THE SECOND PASSWORD VALIDATION
 
-    if not empty_val(password_validate):
-        password_validate_error = "Password cannot be blank"
+    if not empty_val(verify):
+        verify_error = "Password cannot be blank"
         password = ''
-        password_validate = ''
-    elif len(password_validate) < 3 or len(password) > 20:
-        password_validate_error = "Password must be between 3 and 20 characters"
+        verify = ''
+    elif len(verify) < 3 or len(password) > 20:
+        verify_error = "Password must be between 3 and 20 characters"
         password = ''
-        password_validate = ''
-    elif " " in password_validate:
-            password_validate_error = "Password must not contain spaces"
+        verify = ''
+    elif " " in verify:
+            verify_error = "Password must not contain spaces"
             password = ''
-            password_validate = ''
+            verify = ''
     else:
-        if password_validate != password:
-            password_validate_error = "Passwords must match"
+        if verify != password:
+            verify_error = "Passwords must match"
             password = ''
-            password_validate = ''
+            verify = ''
 
     # THIS IS THE USERNAME VALIDATION
 
     if not empty_val(username):
         username_error = "Username cannot be blank"
         password = ''
-        password_validate = ''
+        verify = ''
         password_error = 'Please re-enter password'
-        password_validate_error = 'Please re-enter password'
+        verify_error = 'Please re-enter password'
     elif len(username) < 3 or len(username) > 20:
         username_error = "Username must be between 3 and 20 characters"
         password = ''
-        password_validate = ''
+        verify = ''
         password_error = 'Please re-enter password'
-        password_validate_error = 'Please re-enter password'
+        verify_error = 'Please re-enter password'
     else:
         if " " in username:
             username_error = "Username must not contain spaces"
             password = ''
-            password_validate = ''
+            verify = ''
             password_error = 'Please re-enter password'
-            password_validate_error = 'Please re-enter password'
+            verify_error = 'Please re-enter password'
 
     # THIS IS THE EMAIL VALIDATION
 
     if not char_length(email):
         email_error = "Email must be between 3 and 20 characters"
         password = ''
-        password_validate = ''
+        verify = ''
         password_error = 'Please re-enter password'
-        password_validate_error = 'Please re-enter password'
+        verify_error = 'Please re-enter password'
     elif not email_at_symbol(email):
         email_error = "Email must contain the @ symbol"
         password = ''
-        password_validate = ''
+        verify = ''
         password_error = 'Please re-enter password'
-        password_validate_error = 'Please re-enter password'
+        verify_error = 'Please re-enter password'
     elif not email_at_symbol_more_than_one(email):
         email_error = "Email must contain only one @ symbol"
         password = ''
-        password_validate = ''
+        verify = ''
         password_error = 'Please re-enter password'
-        password_validate_error = 'Please re-enter password'
+        verify_error = 'Please re-enter password'
     elif not email_period(email):
         email_error = "Email must contain a ."
         password = ''
-        password_validate = ''
+        verify = ''
         password_error = 'Please re-enter password'
-        password_validate_error = 'Please re-enter password'
+        verify_error = 'Please re-enter password'
     elif not email_period_more_than_one(email):
         email_error = "Email must contain only one ."
         password = ''
-        password_validate = ''
+        verify = ''
         password_error = 'Please re-enter password'
-        password_validate_error = 'Please re-enter password'
+        verify_error = 'Please re-enter password'
     else:
         if " " in email:
             email_error = "Email must not contain spaces"
             password = ''
-            password_validate = ''
+            verify = ''
             password_error = 'Please re-enter password'
-            password_validate_error = 'Please re-enter password'
+            verify_error = 'Please re-enter password'
 
     # THIS IS THE FINAL RESULT
 
-    if not username_error and not password_error and not password_validate_error and not email_error:
+    if not username_error and not password_error and not verify_error and not email_error:
         username = username
         #return username
         return redirect('/welcome?username={0}'.format(username))
         #return redirect('/welcome?username={username}')
         #return redirect('/welcome')
     else:
-        return render_template('index.html', username_error=username_error, username=username, password_error=password_error, password=password, password_validate_error=password_validate_error, password_validate=password_validate, email_error=email_error, email=email)
+        return render_template('index.html', username_error=username_error, username=username, password_error=password_error, password=password, verify_error=verify_error, verify=verify, email_error=email_error, email=email)
 # THIS REDIRECTS TO A WELCOME PAGE
 
 @app.route('/welcome')
